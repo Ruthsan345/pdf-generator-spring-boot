@@ -64,6 +64,7 @@ public class Wholesaler extends Product {
                         if(pro.proId== proid){
                             if (pro.stock< quantity){throw new UserDefinedException("\n Stocks are low. kindly try a small number\n\n");}
                             NavigableMap<Integer,Integer> discount=new TreeMap<Integer, Integer>();
+                            discount.put(0,0);
                             discount.put(10,5);
                             discount.put(50, 10);
                             discount.put(100, 15);
@@ -82,7 +83,7 @@ public class Wholesaler extends Product {
 
                             System.out.println("\n\n\n\t\t\t<------Bill Amount----->");
                             System.out.println("\n\t\tProduct :: "+ pro.proName + "\n\t\tQuantity :: "+quantity);
-                            System.out.print("\n\t\tBill amount :: "+billAmount+"\n\t\tOffer percentage :: "+pro.discount.get(pro.discount.floorKey(quantity)));
+                            System.out.print("\n\t\tBill amount :: "+billAmount+"\n\t\tOffer percentage :: "+pro.discount.get(pro.discount.floorKey(quantity))+"%");
                             System.out.print("\n\t\tGST Percentage :: 18%\n\t\tGST Amount :: "+gstAmount);
 
                             System.out.print("\n\t\tGrand bill amount :: "+grandBillAmount);

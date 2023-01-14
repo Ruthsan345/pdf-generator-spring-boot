@@ -62,7 +62,7 @@ public class Retailer extends Wholesaler {
                     for(Wholesaler whole : wholesalerList){
                         if(whole.wholesale_id==whoid){
                             for(Product pro:whole.wholesale_products) {
-                                System.out.println(pro.discount.get(57)+"-->>>>"+pro.discount.floorKey(57));
+//                                System.out.println(pro.discount.get(57)+"-->>>>"+pro.discount.floorKey(57));
 //                                System.out.println(pro.discount.get(57)+"-->>>>");
                                 if (pro.proId == proid) {
                                     if (pro.stock < quantity) {
@@ -83,7 +83,7 @@ public class Retailer extends Wholesaler {
 
                                     System.out.println("\n\n\n\t\t\t<------Bill Amount----->");
                                     System.out.println("\n\t\tProduct :: "+ pro.proName + "\n\t\tQuantity :: "+quantity);
-                                    System.out.print("\n\t\tBill amount :: "+billAmount+"\n\t\tOffer percentage :: "+pro.discount.get(pro.discount.floorKey(quantity)));
+                                    System.out.print("\n\t\tBill amount :: "+billAmount+"\n\t\tOffer percentage :: "+pro.discount.get(pro.discount.floorKey(quantity))+"%");
                                     System.out.print("\n\t\tGST Percentage :: 18%\n\t\tGST Amount :: "+gstAmount);
 
                                     System.out.print("\n\t\tGrand bill amount :: "+grandBillAmount);

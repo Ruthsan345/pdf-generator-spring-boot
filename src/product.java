@@ -170,6 +170,7 @@ class Final{
                 int price = Integer.parseInt(csvRecord.get(3));
 
                 NavigableMap<Integer,Integer> discount=new TreeMap<Integer, Integer>();
+                discount.put(0,0);
                 discount.put(10, 10);
                 discount.put(50, 20);
                 discount.put(100, 30);
