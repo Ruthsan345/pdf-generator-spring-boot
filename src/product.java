@@ -8,19 +8,24 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.NavigableMap;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 class Product {
     int proId;
     String proName;
     int stock;
     int price;
+    NavigableMap<Integer,Integer> discount=new TreeMap<Integer, Integer>();
+
     Product(){}
-    Product(int id, String name, int sto, int pri){
+    Product(int id, String name, int sto, int pri,NavigableMap<Integer,Integer> disc ){
         this.proId = id;
         this.proName = name;
         this.stock = sto;
         this.price = pri;
+        this.discount = disc;
     }
 
     void changeQuantity(int stock){
@@ -57,7 +62,11 @@ class Product {
             if (proSto<0){ throw new UserDefinedException("\n Sorry !! You cannot enter a product with negative stock. Kindly create another entry\n\n"); }
             System.out.println("Enter Product price: ");
             int proPri = sc.nextInt();
-           Product products = new Product(proId, proName, proSto, proPri);
+            NavigableMap<Integer,Integer> discount=new TreeMap<Integer, Integer>();
+            discount.put(10, 10);
+            discount.put(50, 20);
+            discount.put(100, 30);
+           Product products = new Product(proId, proName, proSto, proPri,discount);
            productList.add(products);
 
         }catch(UserDefinedException ud){
@@ -135,6 +144,7 @@ class Final{
 //        readcsv(WHOLESALERS_CSV_FILE_PATH,"WHOLESALER");
 //        readcsv(RETAILERS_CSV_FILE_PATH,"RETAILER");
 
+
         String[] file_paths = { "./products.csv", "./wholesalers.csv", "./retailer.csv"};
 
         ArrayList<Product> productsList = new ArrayList<Product>();
@@ -158,7 +168,12 @@ class Final{
                 String proName = csvRecord.get(1);
                 int stock = Integer.parseInt(csvRecord.get(2));
                 int price = Integer.parseInt(csvRecord.get(3));
-                products = new Product(proId, proName, stock, price);
+
+                NavigableMap<Integer,Integer> discount=new TreeMap<Integer, Integer>();
+                discount.put(10, 10);
+                discount.put(50, 20);
+                discount.put(100, 30);
+                products = new Product(proId, proName, stock, price, discount);
                 productsList.add(products);
                 i++;
             }}
@@ -171,6 +186,7 @@ class Final{
             for (CSVRecord csvRecord : csvParser) {
                 int id = Integer.parseInt(csvRecord.get(0));
                 String name = csvRecord.get(1);
+
                 wholesaler = new Wholesaler(id, name, wholesalersProductList);
                 wholesalersList.add(wholesaler);
                 i++;
